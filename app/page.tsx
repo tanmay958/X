@@ -14,6 +14,7 @@ import Button from "@/components/Button";
 import ButtonSignIn from "@/components/ButtonSignIn";
 import Image from "next/image";
 import { SlOptions } from "react-icons/sl";
+import PostBox from "@/components/PostBox";
 
 interface TwitterSidebarButton {
   title: String;
@@ -96,25 +97,10 @@ export default async function Home() {
         )}
       </div>
       <div className="col-span-5 border-r-[1px] border-l-[1px] border-slate-800 overflow-y-scroll">
+        {session && <PostBox session={session} />}
         <FeedCard />
       </div>
       <div className="col-span-4">
-        {/* <div style={{ height: 60, background: "black", padding: 10 }}>
-          {session && (
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <h1 style={{ color: "white" }}>{session.user?.email}</h1>
-              <div>{<Button />}</div>
-            </div>
-          )}
-          {!session && (
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <h1 style={{ color: "white" }}>Coursera</h1>
-              <div>
-                <ButtonSignIn />
-              </div>
-            </div>
-          )}
-        </div> */}
         {session && (
           <div className="grid grid-cols-12">
             <div className="mt-2 col-span-10 col-start-2 border text-center bg-white text-slate-900 text-lg p-2 rounded-3xl font-bold">
