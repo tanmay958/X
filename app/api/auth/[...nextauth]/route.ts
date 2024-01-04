@@ -1,6 +1,10 @@
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
+import { CgOpenCollective } from "react-icons/cg";
+import { Chain } from "@/client/zeus";
+import { Darumadrop_One } from "next/font/google";
+const chain = Chain("http://localhost:8000/graphql");
 
 export const authOptions = {
   // Configure one or more authentication providers
@@ -24,6 +28,23 @@ export const authOptions = {
   },
   jwt: {
     encryption: true,
+  },
+  callbacks: {
+    async signIn(prop: any) {
+      return true;
+    },
+    async session({ session }) {
+      const data = await chain("mutation")({
+        userSignIn: [
+          {
+            email: session.user.email,
+          },
+          true,
+        ],
+      });
+      session.id = data.userSignIn;
+      return session;
+    },
   },
 };
 // export default NextAuth(authOptions);

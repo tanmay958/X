@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
 import { LuFileImage } from "react-icons/lu";
+import toast from "react-hot-toast";
 
 const handleSelectImage = () => {
   const input = document.createElement("input");
@@ -34,7 +35,12 @@ export default function PostBox({ session }) {
             <LuFileImage onClick={handleSelectImage} />
           </div>
           <div>
-            <button className="px-3 py-1 bg-[#1D9BF0] rounded-full font-extrabold">
+            <button
+              className="px-3 py-1 bg-[#1D9BF0] rounded-full font-extrabold"
+              onClick={() => {
+                toast(session.id);
+              }}
+            >
               Post
             </button>
           </div>

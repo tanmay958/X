@@ -48,7 +48,7 @@ const SidebarMenuItems: TwitterSidebarButton[] = [
 ];
 export default async function Home() {
   const session = await getServerSession(authOptions);
-  console.log(session);
+
   return (
     <div className="grid grid-cols-12 bg-black w-screen h-screen  gap-4 p-4">
       <div className="col-span-3 pl-28 relative ">

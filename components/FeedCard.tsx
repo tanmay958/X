@@ -7,7 +7,7 @@ export default function FeedCard() {
   return (
     <>
       <div className="grid grid-cols-12 border border-x-0 border-t-0 border-b-[1px] border-b-slate-800">
-        <div className="col-span-1    py-2 pl-2">
+        <div className="col-span-1  py-2 pl-2">
           <Image
             src="https://avatars.githubusercontent.com/u/53569547?v=4"
             alt="nothing"

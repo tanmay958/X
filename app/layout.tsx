@@ -4,6 +4,7 @@ import "./globals.css";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { getServerSession } from "next-auth";
 import SessionProvider from "./components/SessionProvider";
+import Toaster from "./components/TosterProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <Toaster />
         <SessionProvider session={session}>{children} </SessionProvider>
       </body>
     </html>
