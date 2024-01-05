@@ -836,39 +836,79 @@ export type ScalarCoders = {
 type ZEUS_UNIONS = never
 
 export type ValueTypes = {
-    ["User"]: AliasType<{
+    ["userSingInPayload"]: {
+	email: string | Variable<any, string>,
+	profileImage: string | Variable<any, string>,
+	firstName: string | Variable<any, string>
+};
+	["User"]: AliasType<{
 	id?:boolean | `@${string}`,
 	firstName?:boolean | `@${string}`,
 	lastName?:boolean | `@${string}`,
 	email?:boolean | `@${string}`,
 	profileImageURL?:boolean | `@${string}`,
+	tweets?:ValueTypes["Tweet"],
+		__typename?: boolean | `@${string}`
+}>;
+	["createTweetData"]: {
+	content: string | Variable<any, string>,
+	imageUrl?: string | undefined | null | Variable<any, string>,
+	userid?: number | undefined | null | Variable<any, string>
+};
+	["Tweet"]: AliasType<{
+	id?:boolean | `@${string}`,
+	content?:boolean | `@${string}`,
+	imageUrl?:boolean | `@${string}`,
+	author?:ValueTypes["User"],
 		__typename?: boolean | `@${string}`
 }>;
 	["Mutation"]: AliasType<{
-userSignIn?: [{	email: string | Variable<any, string>},boolean | `@${string}`],
+userSignIn?: [{	payload: ValueTypes["userSingInPayload"] | Variable<any, string>},boolean | `@${string}`],
+createTweet?: [{	payload: ValueTypes["createTweetData"] | Variable<any, string>},ValueTypes["Tweet"]],
 		__typename?: boolean | `@${string}`
 }>;
 	["Query"]: AliasType<{
 verifyGoogleToken?: [{	token?: string | undefined | null | Variable<any, string>},boolean | `@${string}`],
+	getAllTweets?:ValueTypes["Tweet"],
 		__typename?: boolean | `@${string}`
 }>
   }
 
 export type ResolverInputTypes = {
-    ["User"]: AliasType<{
+    ["userSingInPayload"]: {
+	email: string,
+	profileImage: string,
+	firstName: string
+};
+	["User"]: AliasType<{
 	id?:boolean | `@${string}`,
 	firstName?:boolean | `@${string}`,
 	lastName?:boolean | `@${string}`,
 	email?:boolean | `@${string}`,
 	profileImageURL?:boolean | `@${string}`,
+	tweets?:ResolverInputTypes["Tweet"],
+		__typename?: boolean | `@${string}`
+}>;
+	["createTweetData"]: {
+	content: string,
+	imageUrl?: string | undefined | null,
+	userid?: number | undefined | null
+};
+	["Tweet"]: AliasType<{
+	id?:boolean | `@${string}`,
+	content?:boolean | `@${string}`,
+	imageUrl?:boolean | `@${string}`,
+	author?:ResolverInputTypes["User"],
 		__typename?: boolean | `@${string}`
 }>;
 	["Mutation"]: AliasType<{
-userSignIn?: [{	email: string},boolean | `@${string}`],
+userSignIn?: [{	payload: ResolverInputTypes["userSingInPayload"]},boolean | `@${string}`],
+createTweet?: [{	payload: ResolverInputTypes["createTweetData"]},ResolverInputTypes["Tweet"]],
 		__typename?: boolean | `@${string}`
 }>;
 	["Query"]: AliasType<{
 verifyGoogleToken?: [{	token?: string | undefined | null},boolean | `@${string}`],
+	getAllTweets?:ResolverInputTypes["Tweet"],
 		__typename?: boolean | `@${string}`
 }>;
 	["schema"]: AliasType<{
@@ -879,18 +919,37 @@ verifyGoogleToken?: [{	token?: string | undefined | null},boolean | `@${string}`
   }
 
 export type ModelTypes = {
-    ["User"]: {
+    ["userSingInPayload"]: {
+	email: string,
+	profileImage: string,
+	firstName: string
+};
+	["User"]: {
 		id: string,
 	firstName: string,
 	lastName?: string | undefined,
 	email: string,
-	profileImageURL?: string | undefined
+	profileImageURL?: string | undefined,
+	tweets?: Array<ModelTypes["Tweet"] | undefined> | undefined
+};
+	["createTweetData"]: {
+	content: string,
+	imageUrl?: string | undefined,
+	userid?: number | undefined
+};
+	["Tweet"]: {
+		id: string,
+	content: string,
+	imageUrl?: string | undefined,
+	author: ModelTypes["User"]
 };
 	["Mutation"]: {
-		userSignIn: string
+		userSignIn: string,
+	createTweet?: ModelTypes["Tweet"] | undefined
 };
 	["Query"]: {
-		verifyGoogleToken?: string | undefined
+		verifyGoogleToken?: string | undefined,
+	getAllTweets?: Array<ModelTypes["Tweet"] | undefined> | undefined
 };
 	["schema"]: {
 	query?: ModelTypes["Query"] | undefined,
@@ -899,23 +958,46 @@ export type ModelTypes = {
     }
 
 export type GraphQLTypes = {
-    ["User"]: {
+    ["userSingInPayload"]: {
+		email: string,
+	profileImage: string,
+	firstName: string
+};
+	["User"]: {
 	__typename: "User",
 	id: string,
 	firstName: string,
 	lastName?: string | undefined,
 	email: string,
-	profileImageURL?: string | undefined
+	profileImageURL?: string | undefined,
+	tweets?: Array<GraphQLTypes["Tweet"] | undefined> | undefined
+};
+	["createTweetData"]: {
+		content: string,
+	imageUrl?: string | undefined,
+	userid?: number | undefined
+};
+	["Tweet"]: {
+	__typename: "Tweet",
+	id: string,
+	content: string,
+	imageUrl?: string | undefined,
+	author: GraphQLTypes["User"]
 };
 	["Mutation"]: {
 	__typename: "Mutation",
-	userSignIn: string
+	userSignIn: string,
+	createTweet?: GraphQLTypes["Tweet"] | undefined
 };
 	["Query"]: {
 	__typename: "Query",
-	verifyGoogleToken?: string | undefined
+	verifyGoogleToken?: string | undefined,
+	getAllTweets?: Array<GraphQLTypes["Tweet"] | undefined> | undefined
 }
     }
 
 
-type ZEUS_VARIABLES = {}
+type ZEUS_VARIABLES = {
+	["userSingInPayload"]: ValueTypes["userSingInPayload"];
+	["createTweetData"]: ValueTypes["createTweetData"];
+}

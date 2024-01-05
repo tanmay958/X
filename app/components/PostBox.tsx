@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+
 import Image from "next/image";
 import { LuFileImage } from "react-icons/lu";
 import toast from "react-hot-toast";
@@ -10,7 +10,7 @@ const handleSelectImage = () => {
   input.setAttribute("accept", "image/*");
   input.click();
 };
-export default function PostBox({ session }) {
+export default function PostBox({ session }: any) {
   return (
     <div className="grid grid-cols-12 pb-5 pt-2 border-b border-slate-800">
       <div className="col-span-1 py-2 pl-2">
@@ -25,6 +25,7 @@ export default function PostBox({ session }) {
       <div className="col-span-10 px-2 pt-2  border-b border-slate-700 max-h-[80vh]">
         <textarea
           placeholder="What happening ?!"
+          id="myTextbox"
           className="bg-transparent w-full focus:outline-none text-xl "
           rows={4}
         ></textarea>
@@ -38,7 +39,8 @@ export default function PostBox({ session }) {
             <button
               className="px-3 py-1 bg-[#1D9BF0] rounded-full font-extrabold"
               onClick={() => {
-                toast(session.id);
+                var textbox = document.getElementById("myTextbox");
+                var textValue = textbox.value;
               }}
             >
               Post

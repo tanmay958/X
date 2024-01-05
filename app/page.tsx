@@ -1,20 +1,20 @@
 import React from "react";
+
 import { BsTwitterX } from "react-icons/bs";
-import { RiHome5Fill, RiOctagonFill } from "react-icons/ri";
+import { RiHome5Fill } from "react-icons/ri";
 import { IoSearch } from "react-icons/io5";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { HiOutlineEnvelope } from "react-icons/hi2";
 import { FaRegBookmark } from "react-icons/fa6";
 import { CgProfile } from "react-icons/cg";
-import FeedCard from "@/components/FeedCard";
-import { signIn, signOut, useSession } from "next-auth/react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import Button from "@/components/Button";
 import ButtonSignIn from "@/components/ButtonSignIn";
 import Image from "next/image";
 import { SlOptions } from "react-icons/sl";
-import PostBox from "@/components/PostBox";
+import Tweets from "./components/Tweets";
+import PostBox from "./components/PostBox";
 
 interface TwitterSidebarButton {
   title: String;
@@ -46,6 +46,7 @@ const SidebarMenuItems: TwitterSidebarButton[] = [
     icon: <CgProfile />,
   },
 ];
+
 export default async function Home() {
   const session = await getServerSession(authOptions);
 
@@ -76,11 +77,11 @@ export default async function Home() {
         <button className="bg-[#1D9BF0]  p-3 w-2/3 rounded-full mt-4 font-extrabold">
           Post
         </button>
-        {session && (
+        {session && session.user && (
           <div className="absolute bottom-2 grid grid-cols-12 bg-slate-950 gap-2 hover:bg-slate-900 hover:rounded-full p-2">
             <div className="col-span-3">
               <Image
-                src={session.user?.image}
+                src={session?.user?.image}
                 width={50}
                 height={50}
                 alt="profile image"
@@ -98,7 +99,7 @@ export default async function Home() {
       </div>
       <div className="col-span-5 border-r-[1px] border-l-[1px] border-slate-800 overflow-y-scroll">
         {session && <PostBox session={session} />}
-        <FeedCard />
+        <Tweets />
       </div>
       <div className="col-span-4">
         {session && (

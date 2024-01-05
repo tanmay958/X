@@ -5,7 +5,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { getServerSession } from "next-auth";
 import SessionProvider from "./components/SessionProvider";
 import Toaster from "./components/TosterProvider";
-
+import TranstackProvider from "./components/Providers/tanstackProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -19,12 +19,18 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session = await getServerSession();
+  // const queryClient = new QueryClient();
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Toaster />
-        <SessionProvider session={session}>{children} </SessionProvider>
+        <TranstackProvider>
+          <SessionProvider session={session}>
+            <Toaster />
+            {children}
+          </SessionProvider>
+        </TranstackProvider>
       </body>
+      {/* </QueryClientProvider> */}
     </html>
   );
 }
