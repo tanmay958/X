@@ -1,7 +1,5 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import { graphqlClient } from "@/client/api";
-import { getAllTweetsHelper } from "@/graphql/tweet";
 import { Chain } from "../../client/zeus";
 import FeedCard from "@/components/FeedCard";
 const chain = Chain("http://localhost:8000/graphql");

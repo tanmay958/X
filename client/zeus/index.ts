@@ -871,6 +871,7 @@ createTweet?: [{	payload: ValueTypes["createTweetData"] | Variable<any, string>}
 verifyGoogleToken?: [{	token?: string | undefined | null | Variable<any, string>},boolean | `@${string}`],
 getUserProfile?: [{	id: number | Variable<any, string>},ValueTypes["User"]],
 	getAllTweets?:ValueTypes["Tweet"],
+getPreSignUrl?: [{	id: number | Variable<any, string>,	imageType: string | Variable<any, string>},boolean | `@${string}`],
 		__typename?: boolean | `@${string}`
 }>
   }
@@ -911,6 +912,7 @@ createTweet?: [{	payload: ResolverInputTypes["createTweetData"]},ResolverInputTy
 verifyGoogleToken?: [{	token?: string | undefined | null},boolean | `@${string}`],
 getUserProfile?: [{	id: number},ResolverInputTypes["User"]],
 	getAllTweets?:ResolverInputTypes["Tweet"],
+getPreSignUrl?: [{	id: number,	imageType: string},boolean | `@${string}`],
 		__typename?: boolean | `@${string}`
 }>;
 	["schema"]: AliasType<{
@@ -952,7 +954,8 @@ export type ModelTypes = {
 	["Query"]: {
 		verifyGoogleToken?: string | undefined,
 	getUserProfile?: ModelTypes["User"] | undefined,
-	getAllTweets?: Array<ModelTypes["Tweet"] | undefined> | undefined
+	getAllTweets?: Array<ModelTypes["Tweet"] | undefined> | undefined,
+	getPreSignUrl?: string | undefined
 };
 	["schema"]: {
 	query?: ModelTypes["Query"] | undefined,
@@ -996,7 +999,8 @@ export type GraphQLTypes = {
 	__typename: "Query",
 	verifyGoogleToken?: string | undefined,
 	getUserProfile?: GraphQLTypes["User"] | undefined,
-	getAllTweets?: Array<GraphQLTypes["Tweet"] | undefined> | undefined
+	getAllTweets?: Array<GraphQLTypes["Tweet"] | undefined> | undefined,
+	getPreSignUrl?: string | undefined
 }
     }
 

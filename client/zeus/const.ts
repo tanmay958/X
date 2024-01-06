@@ -21,6 +21,9 @@ export const AllTypesProps: Record<string,any> = {
 		},
 		getUserProfile:{
 
+		},
+		getPreSignUrl:{
+
 		}
 	}
 }
@@ -47,7 +50,8 @@ export const ReturnTypes: Record<string,any> = {
 	Query:{
 		verifyGoogleToken:"String",
 		getUserProfile:"User",
-		getAllTweets:"Tweet"
+		getAllTweets:"Tweet",
+		getPreSignUrl:"String"
 	}
 }
 

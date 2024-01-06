@@ -1,13 +1,9 @@
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-import { CgOpenCollective } from "react-icons/cg";
+
 import { Chain } from "@/client/zeus";
-import { Darumadrop_One } from "next/font/google";
-import { setEngine } from "crypto";
-import { graphqlClient } from "@/client/api";
-import { userSignInHelper } from "@/graphql/user";
-import toast from "react-hot-toast";
+
 const chain = Chain("http://localhost:8000/graphql");
 
 export const authOptions = {
@@ -35,25 +31,18 @@ export const authOptions = {
   },
   callbacks: {
     async session({ session }: any) {
-      const data = await graphqlClient.request(userSignInHelper, {
-        payload: {
-          email: session.user.email,
-          firstName: session.user.name,
-          profileImage: session.user.image,
-        },
+      const data = await chain("mutation")({
+        userSignIn: [
+          {
+            payload: {
+              email: session.user.email,
+              firstName: session.user.name,
+              profileImage: session.user.image,
+            },
+          },
+          true,
+        ],
       });
-      // const data = await chain("mutation")({
-      //   userSignIn: [
-      //     {
-      //       payload: {
-      //         email: session.user.email,
-      //         firstName: session.user.name,
-      //         profileImage: session.user.image,
-      //       },
-      //     },
-      //     true,
-      //   ],
-      // });
 
       session.id = data.userSignIn;
       return session;

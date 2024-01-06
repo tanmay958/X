@@ -4,7 +4,6 @@ import { FaRegHeart, FaRegCommentAlt } from "react-icons/fa";
 import { AiOutlineRetweet } from "react-icons/ai";
 import { FiShare } from "react-icons/fi";
 export default function FeedCard({ payload }) {
-  console.log(payload);
   return (
     <>
       <div className="grid grid-cols-12 border border-x-0 border-t-0 border-b-[1px] border-b-slate-800">
@@ -20,8 +19,19 @@ export default function FeedCard({ payload }) {
         <div className="col-span-11 col-start-2 p-4 items-center flex">
           <div className="font-extrabold">{payload.author.firstName} </div>
         </div>
-        <div className="col-span-10 col-start-2 p-4 ">
+        <div className="col-span-10 col-start-2 pl-4 pt-2 pb-1 ">
           <p>{payload.content}</p>
+        </div>
+        <div className="col-span-10 col-start-2 pl-4 ">
+          {payload.imageUrl && (
+            <Image
+              src={payload.imageUrl}
+              width={100}
+              height={100}
+              alt="image"
+              className=" w-fit h-fit rounded-xl shadow-lg"
+            />
+          )}
         </div>
         <div className="col-span-10 col-start-2 flex justify-between p-4">
           <FaRegCommentAlt className="hover:text-blue-400 transition-all" />
