@@ -2,8 +2,8 @@ import React from "react";
 
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
-import Button from "@/components/Button";
-import ButtonSignIn from "@/components/ButtonSignIn";
+import Button from "@/app/components/Button";
+import ButtonSignIn from "@/app/components/ButtonSignIn";
 
 export default async function LeftBar() {
   const session = await getServerSession(authOptions);

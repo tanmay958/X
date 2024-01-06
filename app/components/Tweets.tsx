@@ -1,7 +1,7 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import { Chain } from "../../client/zeus";
-import FeedCard from "@/components/FeedCard";
+import FeedCard from "@/app/components/FeedCard";
 const chain = Chain("http://localhost:8000/graphql");
 const helper = async () => {
   const data = await chain("query")({
