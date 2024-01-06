@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 import { getServerSession } from "next-auth";
 import SessionProvider from "./components/Providers/SessionProvider";
 import Toaster from "./components/Providers/TosterProvider";
 import TranstackProvider from "./components/Providers/tanstackProvider";
+import RightBar from "./components/RIghtBar";
+import LeftBar from "./components/LeftBar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -19,18 +20,20 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session = await getServerSession();
-  // const queryClient = new QueryClient();
   return (
     <html lang="en">
       <body className={inter.className}>
         <TranstackProvider>
           <SessionProvider session={session}>
             <Toaster />
-            {children}
+            <div className="grid grid-cols-12 bg-black w-screen h-screen  px-56">
+              <RightBar />
+              {children}
+              <LeftBar />
+            </div>
           </SessionProvider>
         </TranstackProvider>
       </body>
-      {/* </QueryClientProvider> */}
     </html>
   );
 }

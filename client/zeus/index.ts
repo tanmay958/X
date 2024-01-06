@@ -847,13 +847,13 @@ export type ValueTypes = {
 	lastName?:boolean | `@${string}`,
 	email?:boolean | `@${string}`,
 	profileImageURL?:boolean | `@${string}`,
-	tweets?:ValueTypes["Tweet"],
+	Tweets?:ValueTypes["Tweet"],
 		__typename?: boolean | `@${string}`
 }>;
 	["createTweetData"]: {
 	content: string | Variable<any, string>,
 	imageUrl?: string | undefined | null | Variable<any, string>,
-	userid?: number | undefined | null | Variable<any, string>
+	userid: number | Variable<any, string>
 };
 	["Tweet"]: AliasType<{
 	id?:boolean | `@${string}`,
@@ -869,6 +869,7 @@ createTweet?: [{	payload: ValueTypes["createTweetData"] | Variable<any, string>}
 }>;
 	["Query"]: AliasType<{
 verifyGoogleToken?: [{	token?: string | undefined | null | Variable<any, string>},boolean | `@${string}`],
+getUserProfile?: [{	id: number | Variable<any, string>},ValueTypes["User"]],
 	getAllTweets?:ValueTypes["Tweet"],
 		__typename?: boolean | `@${string}`
 }>
@@ -886,13 +887,13 @@ export type ResolverInputTypes = {
 	lastName?:boolean | `@${string}`,
 	email?:boolean | `@${string}`,
 	profileImageURL?:boolean | `@${string}`,
-	tweets?:ResolverInputTypes["Tweet"],
+	Tweets?:ResolverInputTypes["Tweet"],
 		__typename?: boolean | `@${string}`
 }>;
 	["createTweetData"]: {
 	content: string,
 	imageUrl?: string | undefined | null,
-	userid?: number | undefined | null
+	userid: number
 };
 	["Tweet"]: AliasType<{
 	id?:boolean | `@${string}`,
@@ -908,6 +909,7 @@ createTweet?: [{	payload: ResolverInputTypes["createTweetData"]},ResolverInputTy
 }>;
 	["Query"]: AliasType<{
 verifyGoogleToken?: [{	token?: string | undefined | null},boolean | `@${string}`],
+getUserProfile?: [{	id: number},ResolverInputTypes["User"]],
 	getAllTweets?:ResolverInputTypes["Tweet"],
 		__typename?: boolean | `@${string}`
 }>;
@@ -930,12 +932,12 @@ export type ModelTypes = {
 	lastName?: string | undefined,
 	email: string,
 	profileImageURL?: string | undefined,
-	tweets?: Array<ModelTypes["Tweet"] | undefined> | undefined
+	Tweets?: Array<ModelTypes["Tweet"] | undefined> | undefined
 };
 	["createTweetData"]: {
 	content: string,
 	imageUrl?: string | undefined,
-	userid?: number | undefined
+	userid: number
 };
 	["Tweet"]: {
 		id: string,
@@ -949,6 +951,7 @@ export type ModelTypes = {
 };
 	["Query"]: {
 		verifyGoogleToken?: string | undefined,
+	getUserProfile?: ModelTypes["User"] | undefined,
 	getAllTweets?: Array<ModelTypes["Tweet"] | undefined> | undefined
 };
 	["schema"]: {
@@ -970,12 +973,12 @@ export type GraphQLTypes = {
 	lastName?: string | undefined,
 	email: string,
 	profileImageURL?: string | undefined,
-	tweets?: Array<GraphQLTypes["Tweet"] | undefined> | undefined
+	Tweets?: Array<GraphQLTypes["Tweet"] | undefined> | undefined
 };
 	["createTweetData"]: {
 		content: string,
 	imageUrl?: string | undefined,
-	userid?: number | undefined
+	userid: number
 };
 	["Tweet"]: {
 	__typename: "Tweet",
@@ -992,6 +995,7 @@ export type GraphQLTypes = {
 	["Query"]: {
 	__typename: "Query",
 	verifyGoogleToken?: string | undefined,
+	getUserProfile?: GraphQLTypes["User"] | undefined,
 	getAllTweets?: Array<GraphQLTypes["Tweet"] | undefined> | undefined
 }
     }

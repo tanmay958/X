@@ -35,7 +35,13 @@ export type MutationUserSignInArgs = {
 export type Query = {
   __typename?: 'Query';
   getAllTweets?: Maybe<Array<Maybe<Tweet>>>;
+  getUserProfile?: Maybe<User>;
   verifyGoogleToken?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type QueryGetUserProfileArgs = {
+  id: Scalars['Int']['input'];
 };
 
 
@@ -53,18 +59,18 @@ export type Tweet = {
 
 export type User = {
   __typename?: 'User';
+  Tweets?: Maybe<Array<Maybe<Tweet>>>;
   email: Scalars['String']['output'];
   firstName: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   lastName?: Maybe<Scalars['String']['output']>;
   profileImageURL?: Maybe<Scalars['String']['output']>;
-  tweets?: Maybe<Array<Maybe<Tweet>>>;
 };
 
 export type CreateTweetData = {
   content: Scalars['String']['input'];
   imageUrl?: InputMaybe<Scalars['String']['input']>;
-  userid?: InputMaybe<Scalars['Int']['input']>;
+  userid: Scalars['Int']['input'];
 };
 
 export type UserSingInPayload = {

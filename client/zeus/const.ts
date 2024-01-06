@@ -18,6 +18,9 @@ export const AllTypesProps: Record<string,any> = {
 	Query:{
 		verifyGoogleToken:{
 
+		},
+		getUserProfile:{
+
 		}
 	}
 }
@@ -29,7 +32,7 @@ export const ReturnTypes: Record<string,any> = {
 		lastName:"String",
 		email:"String",
 		profileImageURL:"String",
-		tweets:"Tweet"
+		Tweets:"Tweet"
 	},
 	Tweet:{
 		id:"ID",
@@ -43,6 +46,7 @@ export const ReturnTypes: Record<string,any> = {
 	},
 	Query:{
 		verifyGoogleToken:"String",
+		getUserProfile:"User",
 		getAllTweets:"Tweet"
 	}
 }
