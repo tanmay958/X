@@ -54,7 +54,7 @@ export default async function RightBar() {
   const session = await getServerSession(authOptions);
 
   return (
-    <div className="col-span-3 relative ">
+    <div className="col-span-3 relative pl-48">
       <div className="p-3  hover:bg-slate-900 h-fit w-fit rounded-full transition-all hover:cursor-pointer">
         <BsTwitterX className="text-3xl" />
       </div>

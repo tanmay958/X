@@ -850,6 +850,21 @@ export type ValueTypes = {
 	Tweets?:ValueTypes["Tweet"],
 		__typename?: boolean | `@${string}`
 }>;
+	["FollowResponse"]: AliasType<{
+	success?:boolean | `@${string}`,
+	message?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	["UnFollowResponse"]: AliasType<{
+	success?:boolean | `@${string}`,
+	message?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	["IsFollowing"]: AliasType<{
+	value?:boolean | `@${string}`,
+	message?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	["createTweetData"]: {
 	content: string | Variable<any, string>,
 	imageUrl?: string | undefined | null | Variable<any, string>,
@@ -864,12 +879,18 @@ export type ValueTypes = {
 }>;
 	["Mutation"]: AliasType<{
 userSignIn?: [{	payload: ValueTypes["userSingInPayload"] | Variable<any, string>},boolean | `@${string}`],
+follow?: [{	followerId: number | Variable<any, string>,	followingId: number | Variable<any, string>},ValueTypes["FollowResponse"]],
+unfollow?: [{	followerId: number | Variable<any, string>,	followingId: number | Variable<any, string>},ValueTypes["UnFollowResponse"]],
 createTweet?: [{	payload: ValueTypes["createTweetData"] | Variable<any, string>},ValueTypes["Tweet"]],
 		__typename?: boolean | `@${string}`
 }>;
 	["Query"]: AliasType<{
 verifyGoogleToken?: [{	token?: string | undefined | null | Variable<any, string>},boolean | `@${string}`],
 getUserProfile?: [{	id: number | Variable<any, string>},ValueTypes["User"]],
+isFollowing?: [{	followerId: number | Variable<any, string>,	followingId: number | Variable<any, string>},ValueTypes["IsFollowing"]],
+getAllFollower?: [{	id: number | Variable<any, string>},ValueTypes["User"]],
+getAllFollowing?: [{	id: number | Variable<any, string>},ValueTypes["User"]],
+recommend?: [{	id: number | Variable<any, string>},ValueTypes["User"]],
 	getAllTweets?:ValueTypes["Tweet"],
 getPreSignUrl?: [{	id: number | Variable<any, string>,	imageType: string | Variable<any, string>},boolean | `@${string}`],
 		__typename?: boolean | `@${string}`
@@ -891,6 +912,21 @@ export type ResolverInputTypes = {
 	Tweets?:ResolverInputTypes["Tweet"],
 		__typename?: boolean | `@${string}`
 }>;
+	["FollowResponse"]: AliasType<{
+	success?:boolean | `@${string}`,
+	message?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	["UnFollowResponse"]: AliasType<{
+	success?:boolean | `@${string}`,
+	message?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	["IsFollowing"]: AliasType<{
+	value?:boolean | `@${string}`,
+	message?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	["createTweetData"]: {
 	content: string,
 	imageUrl?: string | undefined | null,
@@ -905,12 +941,18 @@ export type ResolverInputTypes = {
 }>;
 	["Mutation"]: AliasType<{
 userSignIn?: [{	payload: ResolverInputTypes["userSingInPayload"]},boolean | `@${string}`],
+follow?: [{	followerId: number,	followingId: number},ResolverInputTypes["FollowResponse"]],
+unfollow?: [{	followerId: number,	followingId: number},ResolverInputTypes["UnFollowResponse"]],
 createTweet?: [{	payload: ResolverInputTypes["createTweetData"]},ResolverInputTypes["Tweet"]],
 		__typename?: boolean | `@${string}`
 }>;
 	["Query"]: AliasType<{
 verifyGoogleToken?: [{	token?: string | undefined | null},boolean | `@${string}`],
 getUserProfile?: [{	id: number},ResolverInputTypes["User"]],
+isFollowing?: [{	followerId: number,	followingId: number},ResolverInputTypes["IsFollowing"]],
+getAllFollower?: [{	id: number},ResolverInputTypes["User"]],
+getAllFollowing?: [{	id: number},ResolverInputTypes["User"]],
+recommend?: [{	id: number},ResolverInputTypes["User"]],
 	getAllTweets?:ResolverInputTypes["Tweet"],
 getPreSignUrl?: [{	id: number,	imageType: string},boolean | `@${string}`],
 		__typename?: boolean | `@${string}`
@@ -936,6 +978,18 @@ export type ModelTypes = {
 	profileImageURL?: string | undefined,
 	Tweets?: Array<ModelTypes["Tweet"] | undefined> | undefined
 };
+	["FollowResponse"]: {
+		success: boolean,
+	message: string
+};
+	["UnFollowResponse"]: {
+		success: boolean,
+	message: string
+};
+	["IsFollowing"]: {
+		value: boolean,
+	message: string
+};
 	["createTweetData"]: {
 	content: string,
 	imageUrl?: string | undefined,
@@ -949,11 +1003,17 @@ export type ModelTypes = {
 };
 	["Mutation"]: {
 		userSignIn: string,
+	follow: ModelTypes["FollowResponse"],
+	unfollow: ModelTypes["UnFollowResponse"],
 	createTweet?: ModelTypes["Tweet"] | undefined
 };
 	["Query"]: {
 		verifyGoogleToken?: string | undefined,
 	getUserProfile?: ModelTypes["User"] | undefined,
+	isFollowing: ModelTypes["IsFollowing"],
+	getAllFollower?: Array<ModelTypes["User"] | undefined> | undefined,
+	getAllFollowing?: Array<ModelTypes["User"] | undefined> | undefined,
+	recommend?: Array<ModelTypes["User"] | undefined> | undefined,
 	getAllTweets?: Array<ModelTypes["Tweet"] | undefined> | undefined,
 	getPreSignUrl?: string | undefined
 };
@@ -978,6 +1038,21 @@ export type GraphQLTypes = {
 	profileImageURL?: string | undefined,
 	Tweets?: Array<GraphQLTypes["Tweet"] | undefined> | undefined
 };
+	["FollowResponse"]: {
+	__typename: "FollowResponse",
+	success: boolean,
+	message: string
+};
+	["UnFollowResponse"]: {
+	__typename: "UnFollowResponse",
+	success: boolean,
+	message: string
+};
+	["IsFollowing"]: {
+	__typename: "IsFollowing",
+	value: boolean,
+	message: string
+};
 	["createTweetData"]: {
 		content: string,
 	imageUrl?: string | undefined,
@@ -993,12 +1068,18 @@ export type GraphQLTypes = {
 	["Mutation"]: {
 	__typename: "Mutation",
 	userSignIn: string,
+	follow: GraphQLTypes["FollowResponse"],
+	unfollow: GraphQLTypes["UnFollowResponse"],
 	createTweet?: GraphQLTypes["Tweet"] | undefined
 };
 	["Query"]: {
 	__typename: "Query",
 	verifyGoogleToken?: string | undefined,
 	getUserProfile?: GraphQLTypes["User"] | undefined,
+	isFollowing: GraphQLTypes["IsFollowing"],
+	getAllFollower?: Array<GraphQLTypes["User"] | undefined> | undefined,
+	getAllFollowing?: Array<GraphQLTypes["User"] | undefined> | undefined,
+	recommend?: Array<GraphQLTypes["User"] | undefined> | undefined,
 	getAllTweets?: Array<GraphQLTypes["Tweet"] | undefined> | undefined,
 	getPreSignUrl?: string | undefined
 }

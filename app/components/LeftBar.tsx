@@ -4,9 +4,10 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import Button from "@/app/components/Button";
 import ButtonSignIn from "@/app/components/ButtonSignIn";
+import Recommendation from "./Recommendation";
 
 export default async function LeftBar() {
-  const session = await getServerSession(authOptions);
+  const session: any = await getServerSession(authOptions);
 
   return (
     <div className="col-span-3">
@@ -14,6 +15,9 @@ export default async function LeftBar() {
         <div className="grid grid-cols-12">
           <div className="mt-2 col-span-10 col-start-2 border text-center bg-white text-slate-900 text-lg p-2 rounded-3xl font-bold">
             <Button />
+          </div>
+          <div className="col-span-10 col-start-2 h-[40vh] bg-[#16181C] w-full rounded-lg mt-9 overflow-y-scroll">
+            <Recommendation id={session.id} />
           </div>
         </div>
       )}

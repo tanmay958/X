@@ -28,6 +28,17 @@ export default function ProfileTweetCard({
         <div className="col-span-10 col-start-2 p-4 ">
           <p>{payload.content}</p>
         </div>
+        <div className="col-span-10 col-start-2 pl-4 ">
+          {payload.imageUrl && (
+            <Image
+              src={payload.imageUrl}
+              width={100}
+              height={100}
+              alt="image"
+              className=" w-fit h-fit rounded-xl shadow-lg"
+            />
+          )}
+        </div>
         <div className="col-span-10 col-start-2 flex justify-between p-4">
           <FaRegCommentAlt className="hover:text-blue-400 transition-all" />
           <FaRegHeart className="hover:text-red-400 transition-all " />

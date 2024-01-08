@@ -26,7 +26,7 @@ export default async function RootLayout({
         <TranstackProvider>
           <SessionProvider session={session}>
             <Toaster />
-            <div className="grid grid-cols-12 bg-black w-screen h-screen  px-56">
+            <div className="grid grid-cols-12 bg-black w-screen h-screen  ">
               <RightBar />
               {children}
               <LeftBar />

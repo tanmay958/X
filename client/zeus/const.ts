@@ -11,6 +11,12 @@ export const AllTypesProps: Record<string,any> = {
 		userSignIn:{
 			payload:"userSingInPayload"
 		},
+		follow:{
+
+		},
+		unfollow:{
+
+		},
 		createTweet:{
 			payload:"createTweetData"
 		}
@@ -20,6 +26,18 @@ export const AllTypesProps: Record<string,any> = {
 
 		},
 		getUserProfile:{
+
+		},
+		isFollowing:{
+
+		},
+		getAllFollower:{
+
+		},
+		getAllFollowing:{
+
+		},
+		recommend:{
 
 		},
 		getPreSignUrl:{
@@ -37,6 +55,18 @@ export const ReturnTypes: Record<string,any> = {
 		profileImageURL:"String",
 		Tweets:"Tweet"
 	},
+	FollowResponse:{
+		success:"Boolean",
+		message:"String"
+	},
+	UnFollowResponse:{
+		success:"Boolean",
+		message:"String"
+	},
+	IsFollowing:{
+		value:"Boolean",
+		message:"String"
+	},
 	Tweet:{
 		id:"ID",
 		content:"String",
@@ -45,11 +75,17 @@ export const ReturnTypes: Record<string,any> = {
 	},
 	Mutation:{
 		userSignIn:"ID",
+		follow:"FollowResponse",
+		unfollow:"UnFollowResponse",
 		createTweet:"Tweet"
 	},
 	Query:{
 		verifyGoogleToken:"String",
 		getUserProfile:"User",
+		isFollowing:"IsFollowing",
+		getAllFollower:"User",
+		getAllFollowing:"User",
+		recommend:"User",
 		getAllTweets:"Tweet",
 		getPreSignUrl:"String"
 	}
