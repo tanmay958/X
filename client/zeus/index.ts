@@ -877,11 +877,16 @@ export type ValueTypes = {
 	author?:ValueTypes["User"],
 		__typename?: boolean | `@${string}`
 }>;
+	["PostResult"]: AliasType<{
+	success?:boolean | `@${string}`,
+	message?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	["Mutation"]: AliasType<{
 userSignIn?: [{	payload: ValueTypes["userSingInPayload"] | Variable<any, string>},boolean | `@${string}`],
 follow?: [{	followerId: number | Variable<any, string>,	followingId: number | Variable<any, string>},ValueTypes["FollowResponse"]],
 unfollow?: [{	followerId: number | Variable<any, string>,	followingId: number | Variable<any, string>},ValueTypes["UnFollowResponse"]],
-createTweet?: [{	payload: ValueTypes["createTweetData"] | Variable<any, string>},ValueTypes["Tweet"]],
+createTweet?: [{	payload: ValueTypes["createTweetData"] | Variable<any, string>},ValueTypes["PostResult"]],
 		__typename?: boolean | `@${string}`
 }>;
 	["Query"]: AliasType<{
@@ -939,11 +944,16 @@ export type ResolverInputTypes = {
 	author?:ResolverInputTypes["User"],
 		__typename?: boolean | `@${string}`
 }>;
+	["PostResult"]: AliasType<{
+	success?:boolean | `@${string}`,
+	message?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	["Mutation"]: AliasType<{
 userSignIn?: [{	payload: ResolverInputTypes["userSingInPayload"]},boolean | `@${string}`],
 follow?: [{	followerId: number,	followingId: number},ResolverInputTypes["FollowResponse"]],
 unfollow?: [{	followerId: number,	followingId: number},ResolverInputTypes["UnFollowResponse"]],
-createTweet?: [{	payload: ResolverInputTypes["createTweetData"]},ResolverInputTypes["Tweet"]],
+createTweet?: [{	payload: ResolverInputTypes["createTweetData"]},ResolverInputTypes["PostResult"]],
 		__typename?: boolean | `@${string}`
 }>;
 	["Query"]: AliasType<{
@@ -1001,11 +1011,15 @@ export type ModelTypes = {
 	imageUrl?: string | undefined,
 	author: ModelTypes["User"]
 };
+	["PostResult"]: {
+		success?: boolean | undefined,
+	message?: string | undefined
+};
 	["Mutation"]: {
 		userSignIn: string,
 	follow: ModelTypes["FollowResponse"],
 	unfollow: ModelTypes["UnFollowResponse"],
-	createTweet?: ModelTypes["Tweet"] | undefined
+	createTweet?: ModelTypes["PostResult"] | undefined
 };
 	["Query"]: {
 		verifyGoogleToken?: string | undefined,
@@ -1065,12 +1079,17 @@ export type GraphQLTypes = {
 	imageUrl?: string | undefined,
 	author: GraphQLTypes["User"]
 };
+	["PostResult"]: {
+	__typename: "PostResult",
+	success?: boolean | undefined,
+	message?: string | undefined
+};
 	["Mutation"]: {
 	__typename: "Mutation",
 	userSignIn: string,
 	follow: GraphQLTypes["FollowResponse"],
 	unfollow: GraphQLTypes["UnFollowResponse"],
-	createTweet?: GraphQLTypes["Tweet"] | undefined
+	createTweet?: GraphQLTypes["PostResult"] | undefined
 };
 	["Query"]: {
 	__typename: "Query",

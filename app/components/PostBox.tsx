@@ -69,16 +69,20 @@ export default function PostBox({ session }: any) {
               },
             },
             {
-              id: true,
+              message: true,
+              success: true,
             },
           ],
         });
+        console.log(data.createTweet);
+        if (data.createTweet?.success === false) {
+          toast.error(`${data.createTweet.message} `);
+        }
       } catch (err) {
         console.log(err);
       }
     },
     onSuccess: () => {
-      toast.success("posted sucessfully");
       setInput("");
       setImageURL("");
       queryClient.invalidateQueries({ queryKey: ["use-Tweets"] });

@@ -73,11 +73,15 @@ export const ReturnTypes: Record<string,any> = {
 		imageUrl:"String",
 		author:"User"
 	},
+	PostResult:{
+		success:"Boolean",
+		message:"String"
+	},
 	Mutation:{
 		userSignIn:"ID",
 		follow:"FollowResponse",
 		unfollow:"UnFollowResponse",
-		createTweet:"Tweet"
+		createTweet:"PostResult"
 	},
 	Query:{
 		verifyGoogleToken:"String",
