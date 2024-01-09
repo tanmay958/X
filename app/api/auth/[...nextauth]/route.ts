@@ -4,7 +4,7 @@ import GoogleProvider from "next-auth/providers/google";
 
 import { Chain } from "@/client/zeus";
 
-const chain = Chain("http://localhost:8000/graphql");
+const chain = Chain(process.env.NEXT_PUBLIC_GRAPHQL as string);
 
 export const authOptions = {
   // Configure one or more authentication providers
@@ -12,11 +12,6 @@ export const authOptions = {
     GithubProvider({
       clientId: "71806cf71fdd9454a4ac",
       clientSecret: "efe5200928cfb2542b0c5f3f351c201da356128d",
-    }),
-    GoogleProvider({
-      clientId:
-        "538405567512-4e45ijl4fa7rn91muma5vicdomesoda5.apps.googleusercontent.com",
-      clientSecret: "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",
     }),
     // ...add more providers here
   ],

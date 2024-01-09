@@ -2,7 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Chain } from "../../client/zeus";
 import FeedCard from "@/app/components/FeedCard";
-const chain = Chain("http://localhost:8000/graphql");
+const chain = Chain(process.env.NEXT_PUBLIC_GRAPHQL as string);
 const helper = async () => {
   const data = await chain("query")({
     getAllTweets: {

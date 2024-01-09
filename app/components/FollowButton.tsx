@@ -3,7 +3,7 @@ import React from "react";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { Chain } from "@/client/zeus";
-const chain = Chain("http://localhost:8000/graphql");
+const chain = Chain(process.env.NEXT_PUBLIC_GRAPHQL as string);
 const follow_state: string =
   " hover:opacity-75 text-black bg-white font-semibold py-1 px-5 border border-white hover:border-transparent rounded-full";
 const following_state: string =

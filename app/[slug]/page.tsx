@@ -3,7 +3,7 @@ import { Chain } from "@/client/zeus";
 import { getServerSession } from "next-auth";
 import Profile from "../components/Profile";
 import SessionProvider from "../components/Providers/SessionProvider";
-const chain = Chain("http://localhost:8000/graphql");
+const chain = Chain(process.env.NEXT_PUBLIC_GRAPHQL as string);
 
 export const dynamic = "force-dynamic";
 const getUserInfo = async (id: any) => {

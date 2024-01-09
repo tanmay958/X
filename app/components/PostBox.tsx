@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Chain } from "@/client/zeus";
 import axios from "axios";
-const chain = Chain("http://localhost:8000/graphql");
+const chain = Chain(process.env.NEXT_PUBLIC_GRAPHQL as string);
 
 export default function PostBox({ session }: any) {
   const [input, setInput] = useState("");

@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 import { AllTypesProps, ReturnTypes, Ops } from "./const";
-export const HOST = "http://localhost:8000/graphql";
+export const HOST = process.env.NEXT_PUBLIC_GRAPHQL as string;
 
 export const HEADERS = {};
 export const apiSubscription = (options: chainOptions) => (query: string) => {

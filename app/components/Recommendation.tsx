@@ -3,7 +3,7 @@ import { Chain } from "@/client/zeus";
 import RecommendUser from "./RecommendUser";
 import { RiH1 } from "react-icons/ri";
 export const dynamic = "force-dynamic";
-const chain = Chain("http://localhost:8000/graphql");
+const chain = Chain(process.env.NEXT_PUBLIC_GRAPHQL as string);
 const getRecomendation = async (id: any) => {
   const recommendeduser = await chain("query")({
     recommend: [
