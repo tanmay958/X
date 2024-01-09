@@ -74,7 +74,7 @@ export default function PostBox({ session }: any) {
             },
           ],
         });
-        console.log(data.createTweet);
+
         if (data.createTweet?.success === false) {
           toast.error(`${data.createTweet.message} `);
         }
@@ -104,7 +104,7 @@ export default function PostBox({ session }: any) {
       </div>
       <div className="col-span-10 px-2 pt-2  border-b border-slate-700 max-h-[80vh]">
         <textarea
-          placeholder={"What is Happing?!"}
+          placeholder={"What is happening?!"}
           id="myTextbox"
           value={input}
           className={`bg-transparent w-full focus:outline-none text-xl ${

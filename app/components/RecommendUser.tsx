@@ -15,7 +15,7 @@ export default function RecommendUser({
 }) {
   return (
     <div className="w-full hover:bg-slate-950 rounded-sm flex items-center justify-between gap-5">
-      <div className="flex gap-3">
+      <div className="flex gap-3 mb-2">
         <Image
           src={profileImageURL}
           alt={name + "image"}

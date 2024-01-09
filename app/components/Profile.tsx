@@ -3,6 +3,8 @@ import React from "react";
 import Image from "next/image";
 import { IoArrowBackOutline } from "react-icons/io5";
 import ProfileTweetCard from "./ProfileTweetCard";
+import FollowButtonProfile from "./FollowButtonProfile";
+import Link from "next/link";
 
 function Profile({
   data,
@@ -17,7 +19,9 @@ function Profile({
     <div>
       <nav className="w-full h-10 md:h-14 flex  gap-3 mb-1">
         <div className="text-xl p-4 opacity-70  rounded-full hover:bg-slate-700 w-fit">
-          <IoArrowBackOutline />
+          <Link href={"/"}>
+            <IoArrowBackOutline />
+          </Link>
         </div>
         <div className="pt-2 pl-1">
           <div className="font-extrabold text-xl text-slate-50 mb-0 pb-0 ">
@@ -28,22 +32,6 @@ function Profile({
           </p>
         </div>
       </nav>
-      <div className="hover:underline">
-        <span className="font-semibold text-base text-white">
-          {followerList.length}
-        </span>
-        <span className="font-light text-gray-600 text-base ml-2">
-          Followers
-        </span>
-      </div>
-      <div className="hover:underline">
-        <span className="font-semibold text-base text-white">
-          {followingList.length}
-        </span>
-        <span className="font-light text-gray-600 text-base ml-2">
-          Following
-        </span>
-      </div>
 
       <div
         className="w-full bg-cover bg-no-repeat bg-center"
@@ -64,7 +52,7 @@ function Profile({
         />
       </div>
       <div className="relative flex w-full">
-        <div className="flex flex-1">
+        <div className="flex justify-between  mt-1 w-full">
           <div style={{ marginTop: `-6rem` }}>
             <div
               style={{ height: `9rem`, width: `9rem` }}
@@ -80,6 +68,27 @@ function Profile({
               />
             </div>
           </div>
+          <div>
+            <FollowButtonProfile user_id={data.id} />
+          </div>
+        </div>
+      </div>
+      <div className="flex gap-2">
+        <div className="hover:underline">
+          <span className="font-semibold text-base text-white">
+            {followerList.length}
+          </span>
+          <span className="font-light text-gray-600 text-base ml-2">
+            Followers
+          </span>
+        </div>
+        <div className="hover:underline">
+          <span className="font-semibold text-base text-white">
+            {followingList.length}
+          </span>
+          <span className="font-light text-gray-600 text-base ml-2">
+            Following
+          </span>
         </div>
       </div>
       <div className="mt-10 border-t border-slate-800">
