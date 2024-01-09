@@ -1,12 +1,11 @@
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
-import GoogleProvider from "next-auth/providers/google";
 
 import { Chain } from "@/client/zeus";
 
 const chain = Chain(process.env.NEXT_PUBLIC_GRAPHQL as string);
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
   providers: [
     GithubProvider({
@@ -20,9 +19,6 @@ export const authOptions = {
   session: {
     strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60, // 30 days
-  },
-  jwt: {
-    encryption: true,
   },
   callbacks: {
     async session({ session }: any) {

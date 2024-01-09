@@ -1,8 +1,8 @@
 import React from "react";
 import { Chain } from "@/client/zeus";
-import { getServerSession } from "next-auth";
+
 import Profile from "../components/Profile";
-import SessionProvider from "../components/Providers/SessionProvider";
+
 const chain = Chain(process.env.NEXT_PUBLIC_GRAPHQL as string);
 
 export const dynamic = "force-dynamic";
@@ -69,20 +69,18 @@ export default async function ProfiePage({
   const data = await getUserInfo(params.slug);
   const followerList = await getFollower(params.slug);
   const followingList = await getFollowing(params.slug);
-  const session = await getServerSession();
+
   return (
     <div className="col-span-6 border-r-[1px] border-l-[1px] border-slate-800 overflow-y-scroll">
       {data.getUserProfile === null ? (
         <h1>No such user</h1>
       ) : (
         <>
-          <SessionProvider session={session}>
-            <Profile
-              data={data.getUserProfile}
-              followerList={followerList}
-              followingList={followingList}
-            />
-          </SessionProvider>
+          <Profile
+            data={data.getUserProfile}
+            followerList={followerList}
+            followingList={followingList}
+          />
         </>
       )}
     </div>
