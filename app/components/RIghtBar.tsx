@@ -51,30 +51,10 @@ const SidebarMenuItems: TwitterSidebarButton[] = [
 ];
 
 export default async function RightBar() {
-  const session = await getServerSession(authOptions);
+  const session: any = await getServerSession(authOptions);
 
   return (
     <div className="col-span-2 sm:col-span-3 sm:relative  ">
-      {/* <div className="w-full  my-4 sm:p-3  hover:bg-slate-900 sm:h-fit sm:w-fit sm:rounded-full sm:transition-all sm:hover:cursor-pointer">
-        <BsTwitterX className="sm:text-3xl w-full " />
-      </div>
-      <div className="sm :mt-4 sm:text-2xl sm:font-medium ">
-        <ul>
-          {SidebarMenuItems.map((item) => (
-            <div
-              className="sm:py-2 sm:mb-3  hover:bg-slate-900 sm:w-fit sm:h-fit sm:rounded-full w-full "
-              key={item.id}
-            >
-              <li className="sm:flex sm:justify-start sm:items-center ">
-                <span className="sm:text-3xl ">{item.icon}</span>
-                <span className="hidden sm:block sm:text-xl">
-                  {item.title}{" "}
-                </span>
-              </li>
-            </div>
-          ))}
-        </ul>
-      </div> */}
       <div className="hidden sm:block ">
         <div className="ml-[105px] rounded-full mt-2  hover:bg-slate-900 w-fit  p-2">
           <BsTwitterX className="text-3xl  " />
@@ -108,28 +88,11 @@ export default async function RightBar() {
       </div>
 
       {session && session.user && (
-        // <div className="absolute bottom-2 grid grid-cols-12 bg-slate-950 gap-2 hover:bg-slate-900 hover:rounded-full p-2">
-        //   <div className="col-span-3">
-        //     <Image
-        //       src={session?.user?.image}
-        //       width={50}
-        //       height={50}
-        //       alt="profile image"
-        //       className="rounded-full"
-        //     />
-        //   </div>
-        //   <div className="flex col-span-6 items-center justify-center">
-        //     {session?.user.name}
-        //   </div>
-        //   <div className=" col-span-3 flex items-center justify-center">
-        //     <SlOptions />
-        //   </div>
-        // </div>
         <div className="absolute bottom-2 ml-3 sm:ml-24 ">
           <div className="flex gap-2  rounded-full hover:bg-slate-900 justify-between px-2 py-1">
             <div className="flex gap-2">
               <Image
-                src={session?.user?.image}
+                src={session.user.image}
                 width={45}
                 height={45}
                 alt="profile image"
