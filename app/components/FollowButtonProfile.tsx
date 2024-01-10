@@ -11,7 +11,7 @@ const following_state: string =
 function FollowButtonProfile({ user_id }: { user_id: any }) {
   const [followState, SetFollowState] = useState("...");
   const [cssFollow, setCssFollow] = useState(follow_state);
-  const { data: session } = useSession();
+  const { data: session }: any = useSession();
   getFollowState();
   async function getFollowState() {
     const data = await chain("query")({

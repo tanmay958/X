@@ -24,7 +24,7 @@ const Tweets = () => {
     queryKey: ["use-Tweets"],
     queryFn: helper,
   });
-  if (isLoading) return <h1>loading....</h1>;
+  if (isLoading) return <h1 className="ml-80">loading...</h1>;
 
   return data?.getAllTweets?.map((item) => (
     <FeedCard key={item.id} payload={item} />
